@@ -31,6 +31,25 @@ return haystack.indexOf(needle);
 *Memory Usage: 38.1 MB, less than 69.16% of Java online submissions for Implement strStr().
 */
 
+class Solution {
+    public int strStr(String haystack, String needle) {
+        if(needle.length()==0 || haystack.equals(needle))  
+            return 0;
+        if(needle.length() > haystack.length())  
+            return -1;
+        int i;
+        int nlen = needle.length();
+        for(i = 0; i <= haystack.length() - nlen; i++){
+            if(haystack.substring(i, i + nlen).equals(needle))  return i;
+        }
+        return -1;
+    }
+}
+/*
+*Runtime: 0 ms, faster than 100.00% of Java online submissions for Implement strStr().
+*Memory Usage: 39.3 MB, less than 47.36% of Java online submissions for Implement strStr().
+*/
+
 python:
 class Solution:
     def strStr(self, haystack: str, needle: str) -> int:
