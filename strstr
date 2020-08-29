@@ -1,4 +1,5 @@
-java:
+https://leetcode.com/problems/implement-strstr/
+Java:
 
 class Solution {
     public int strStr(String haystack, String needle) {
@@ -50,7 +51,7 @@ class Solution {
 *Memory Usage: 39.3 MB, less than 47.36% of Java online submissions for Implement strStr().
 */
 
-python:
+Python3:
 class Solution:
     def strStr(self, haystack: str, needle: str) -> int:
         if needle in haystack:
