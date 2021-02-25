@@ -1,0 +1,28 @@
+class Solution {
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+                
+        List<List<Integer>> results = new ArrayList();
+        
+        Arrays.sort(nums);
+        subsetHelper(nums, results, new ArrayList(), 0);
+        
+        return results;
+    }
+    
+    private void subsetHelper(int[] nums, List<List<Integer>> results, List<Integer> sub,  int idx){
+        results.add(new ArrayList(sub));
+        for (int i = idx; i < nums.length; i++){
+            if(i != idx && nums[i] == nums[i - 1]){
+                continue;
+            }
+            sub.add(nums[i]);
+            subsetHelper(nums, results, sub, i + 1);
+            sub.remove(sub.size() - 1);
+        }
+    } 
+}
+
+
+leetcode.com/problems/subsets-ii
+Runtime: 1 ms, faster than 99.49% of Java online submissions for Subsets II.
+Memory Usage: 39.7 MB, less than 20.76% of Java online submissions for Subsets II.
