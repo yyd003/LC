@@ -1,0 +1,70 @@
+    Recursion:
+    Total runtime: 1751ms(Your submission beats 92.00% Submissions!)
+    public List<List<Integer>> permute(int[] nums) {
+        // write your code here
+        List<List<Integer>> result = new ArrayList();
+        
+        helper(nums, 0, result);
+        
+        return result;
+    }
+
+    private void helper(int[] nums, int idx, List<List<Integer>> result){
+            if(idx == nums.length){
+                List<Integer> temp = new ArrayList();
+                for(int n:nums){
+                    temp.add(n);                   
+                }
+                result.add(temp);
+            }else{
+                for(int i = idx; i < nums.length; i++){
+                    swap(i, idx, nums);
+                    helper(nums, idx+1, result);
+                    swap(i, idx, nums);
+                }
+            }
+
+    }
+
+    private void swap(int i, int j, int[] nums){
+        if(i == j)
+            return;
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+    
+    
+    non-Recursion:
+    Total runtime: 1721ms(Your submission beats 99.40% Submissions!)
+    public List<List<Integer>> permute(int[] nums) {
+        // write your code here
+
+        List<List<Integer>> res = new ArrayList();
+        int nLen = nums.length;
+
+        if(nLen == 0 ){
+            res.add(new ArrayList());
+            return res;
+        }
+        
+        List list = new ArrayList<>();
+        list.add(nums[0]);
+        res.add(new ArrayList(list));
+
+        for(int i = 1; i < nLen; i++){
+            int rSize = res.size();
+            for(int j = 0; j < rSize; j++){
+                    int lSize = res.get(0).size();
+                    for(int k = 0; k <= lSize; k++){
+                        List temp = new ArrayList(res.get(0));
+                        temp.add(k, nums[i]);
+                        res.add(temp);
+                    }
+                    res.remove(0);
+            }
+        }
+
+        return res;
+
+    }
